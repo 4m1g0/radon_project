@@ -22,8 +22,8 @@ module.exports = function(wagner) {
 
     api.get('/history', wagner.invoke(function (RadonLog) {
         return function(req, res){
-            RadonLog.find({sensorId: req.query.sensorId, date : { $lt : req.query.start,
-                    $gt : req.query.end}}, function(error, logs){
+            RadonLog.find({sensorId: req.query.sensorId, date : { $lt : req.query.end,
+                    $gt : req.query.start}}, function(error, logs){
                 if (error) {
                     return res.status(status.BAD_REQUEST).json({error: error.toString()});
                 }
