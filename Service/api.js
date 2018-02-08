@@ -15,7 +15,7 @@ module.exports = function(wagner) {
                     return res.status(status.BAD_REQUEST).json({error: error.toString()});
                 }
 
-                return res.status(status.OK).json({log_id: log._id});
+                return res.status(status.CREATED).json({log_id: log._id});
             });
         };
     }));
