@@ -31,7 +31,7 @@ bool Clock::updateTime()
     byte packetBuffer[NTP_PACKET_SIZE]; //buffer to hold incoming and outgoing packets
     WiFiUDP udp;
     IPAddress timeServerIP;
-    String ntpServerName = "time.nist.gov";
+    String ntpServerName = "es.pool.ntp.org";
     WiFi.hostByName(ntpServerName.c_str(), timeServerIP);
     // set all bytes in the buffer to 0
     memset(packetBuffer, 0, NTP_PACKET_SIZE);
@@ -78,8 +78,9 @@ bool Clock::updateTime()
     // this is NTP time (seconds since Jan 1 1900):
     unsigned long secsSince1900 = highWord << 16 | lowWord;
     const unsigned long seventyYears = 2208988800UL;
-    _unixTime = (secsSince1900 - seventyYears) + 7200;
+    _unixTime = (secsSince1900 - seventyYears) + 3600 * 1; // 1. winter clock 2 summer clock
 
+  Serial.println(_unixTime);
   _lastUpdate = millis();
 
   return true;
@@ -132,13 +133,13 @@ String Clock::getHumanDate(unsigned long unixTime)
   dt = localtime(&rawtime);
 
   String str;
-  if (dt->tm_mday < 10) str.concat('0');
-  str.concat(dt->tm_mday);
+  str.concat(dt->tm_year + 1990);
   str.concat('-');
   if (dt->tm_mon+1 < 10) str.concat('0');
   str.concat(dt->tm_mon+1);
   str.concat('-');
-  str.concat(dt->tm_year + 1900);
+  if (dt->tm_mday < 10) str.concat('0');
+  str.concat(dt->tm_mday);
 
   return str;
 }
@@ -153,13 +154,13 @@ String Clock::getHumanDateTime(unsigned long unixTime)
   dt = localtime(&rawtime);
 
   String str;
-  if (dt->tm_mday < 10) str.concat('0');
-  str.concat(dt->tm_mday);
+  str.concat(dt->tm_year + 1900);
   str.concat('-');
   if (dt->tm_mon+1 < 10) str.concat('0');
   str.concat(dt->tm_mon+1);
   str.concat('-');
-  str.concat(dt->tm_year + 1900);
+  if (dt->tm_mday < 10) str.concat('0');
+  str.concat(dt->tm_mday);
   str.concat(' ');
   if (dt->tm_hour < 10) str.concat('0');
   str.concat(dt->tm_hour);
