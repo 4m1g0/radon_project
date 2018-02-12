@@ -69,5 +69,22 @@ module.exports = function(wagner) {
         };
     }));
 
+    api.delete('/history', wagner.invoke(function (RadonLog) {
+        return function(req, res){
+            RadonLog.remove({sensorId: req.query.sensorId, date : { $lt : req.query.end,
+                    $gt : req.query.start}}, function(error, logs){
+                if (error) {
+                    return res.status(status.BAD_REQUEST).json({error: error.toString()});
+                }
+
+                if (!logs) {
+                    return res.status(status.NOT_FOUND).json({error:'Not found'});
+                }
+
+                res.json({logs:logs});
+            });
+        };
+    }));
+
   return api;
 };
