@@ -44,12 +44,14 @@ void setup()
 {
   Serial.begin(9600);
   pinMode(D5, INPUT);
-  pinMode(D0, OUTPUT);
+  pinMode(D7, OUTPUT);
   pinMode(D1, OUTPUT);
   pinMode(D2, OUTPUT);
   pinMode(D3, OUTPUT);
   pinMode(D6, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
+
+  blinkOK();
 
   WiFiManager wifiManager;
   String connString = String("Sensor-") + ESP.getChipId();
@@ -81,7 +83,7 @@ void setup()
   http.end();
   Serial.println(String("code: ") + httpCode);
 
-  ESP.deepSleep(1UL * 60UL * 60UL * SECONDS); // 1 hour
+  ESP.deepSleep(60UL * 60 * SECONDS); // 1 hour
 }
 
 void loop()

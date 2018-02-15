@@ -37,7 +37,7 @@ enum radonPinout {
 
 void select(int n)
 {
-  digitalWrite(D0, n & 0b0001);
+  digitalWrite(D7, n & 0b0001);
   digitalWrite(D1, n & 0b0010);
   digitalWrite(D2, n & 0b0100);
   digitalWrite(D3, n & 0b1000);
