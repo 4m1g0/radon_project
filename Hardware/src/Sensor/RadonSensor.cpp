@@ -119,7 +119,12 @@ int getSegment(int n){
 }
 
 int _getValue(){
-  return getSegment(LCD_1) + getSegment(LCD_2) * 10 + getSegment(LCD_3) * 100 + getSegment(LCD_4) * 1000;
+  digitalWrite(D6, LOW);
+  delay(1000);
+  int value = getSegment(LCD_1) + getSegment(LCD_2) * 10 + getSegment(LCD_3) * 100 + getSegment(LCD_4) * 1000;
+  delay(100);
+  digitalWrite(D6, HIGH);
+  return value;
 }
 
 SensorValue* RadonSensor::getValue() {
