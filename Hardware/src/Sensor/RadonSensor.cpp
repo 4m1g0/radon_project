@@ -29,11 +29,13 @@ enum radonPinout {
   SEG_F,
   SEG_G,
   LCD_1,
-  LCD_4,
-  LCD_3,
   LCD_2,
+  LCD_3,
+  LCD_4,
   LCD_L4,
 };
+
+const int8_t POWER = D8;
 
 void select(int n)
 {
@@ -67,6 +69,14 @@ void printSegments() {
   Serial.print(F);
   Serial.print(G);
   Serial.println();
+}
+
+bool getLongTerm(){
+  select(LCD_4);
+  while (digitalRead(D5) != LOW) {  }
+  
+  select(LCD_L4);
+  return !digitalRead(D5);
 }
 
 int getSegment(int n){
@@ -119,10 +129,23 @@ int getSegment(int n){
 }
 
 int _getValue(){
+  if (getLongTerm())
+  {
+    digitalWrite(D6, LOW);
+    delay(300);
+    digitalWrite(D6, HIGH);
+    delay(300);
+  }
+
   digitalWrite(D6, LOW);
   delay(1000);
   int value = getSegment(LCD_1) + getSegment(LCD_2) * 10 + getSegment(LCD_3) * 100 + getSegment(LCD_4) * 1000;
   delay(100);
+  digitalWrite(D6, HIGH);
+  delay(700);
+  // Put again in long term in case sensor is sticky
+  digitalWrite(D6, LOW);
+  delay(300);
   digitalWrite(D6, HIGH);
   return value;
 }
@@ -130,5 +153,14 @@ int _getValue(){
 SensorValue* RadonSensor::getValue() {
   int value = _getValue();
   Serial.printf("Reading sensor... %d\n", value);
-  return new SensorValue(1, value);
+  return new SensorValue(3, value);
+}
+
+void RadonSensor::reset(){
+  // power off
+  digitalWrite(POWER, HIGH);
+  delay(1000);
+
+  // power on
+  digitalWrite(POWER, LOW);
 }

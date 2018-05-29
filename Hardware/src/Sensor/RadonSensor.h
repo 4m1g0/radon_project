@@ -25,6 +25,7 @@ class RadonSensor
 {
 public:
   static SensorValue* getValue();
+  static void reset();
 };
 
 #endif
