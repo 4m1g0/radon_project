@@ -9,10 +9,15 @@ module.exports = function(wagner) {
 
     api.post('/history', wagner.invoke(function (RadonLog) {
         return function (req, res) {
+	    console.log(req.body);
             var log = new RadonLog(req.body);
             log.save(function (error, log) {
                 if (error) {
                     return res.status(status.BAD_REQUEST).json({error: error.toString()});
+                }
+                
+                if (log.value < 0){
+                    return res.status(status.RESET_CONTENT).json({log_id: log._id});
                 }
 
                 return res.status(status.CREATED).json({log_id: log._id});
