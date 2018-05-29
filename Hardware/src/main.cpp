@@ -51,6 +51,8 @@ void setup()
   pinMode(D6, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
 
+  digitalWrite(D6, HIGH);
+
   blinkOK();
 
   WiFiManager wifiManager;

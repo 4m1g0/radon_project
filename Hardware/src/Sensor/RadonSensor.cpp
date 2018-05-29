@@ -105,7 +105,7 @@ int getSegment(int n){
       return 4;
     case 0b1011011:
       return 5;
-    case 0b0011111:
+    case 0b1011111:
       return 6;
     case 0b1110000:
       return 7;
@@ -119,10 +119,16 @@ int getSegment(int n){
 }
 
 int _getValue(){
-  return getSegment(LCD_1) + getSegment(LCD_2) * 10 + getSegment(LCD_3) * 100 + getSegment(LCD_4) * 1000;
+  digitalWrite(D6, LOW);
+  delay(1000);
+  int value = getSegment(LCD_1) + getSegment(LCD_2) * 10 + getSegment(LCD_3) * 100 + getSegment(LCD_4) * 1000;
+  delay(100);
+  digitalWrite(D6, HIGH);
+  return value;
 }
 
 SensorValue* RadonSensor::getValue() {
-  Serial.println("Reading sensor...");
-  return new SensorValue(1, _getValue());
+  int value = _getValue();
+  Serial.printf("Reading sensor... %d\n", value);
+  return new SensorValue(1, value);
 }
