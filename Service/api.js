@@ -1,6 +1,7 @@
 var express = require('express');
 var status = require('http-status');
 var bodyparser = require('body-parser');
+var dateFormat = require('dateformat');
 
 module.exports = function(wagner) {
     var api = express.Router();
@@ -11,6 +12,13 @@ module.exports = function(wagner) {
         return function (req, res) {
 	    console.log(req.body);
             var log = new RadonLog(req.body);
+
+            req.body.sensorId
+            dateFormat(Date.now(), "yyyy-mm-dd");
+
+            RadonLog.update({_id: req.params.id}, doc, function(err, raw) {
+                if (err) {
+
             log.save(function (error, log) {
                 if (error) {
                     return res.status(status.BAD_REQUEST).json({error: error.toString()});

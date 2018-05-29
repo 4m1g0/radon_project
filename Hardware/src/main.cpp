@@ -7,10 +7,9 @@
 #include <ArduinoJson.h>
 #include "model/SensorValue.h"
 #include "Sensor/RadonSensor.h"
+#include <ESP8266httpUpdate.h>
 
 const uint32_t SECONDS = 1000000;
-
-
 
 void blinkOK(){
   digitalWrite(LED_BUILTIN, HIGH);
@@ -42,7 +41,8 @@ void blinkError() {
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
+  pinMode(D8, OUTPUT);
   pinMode(D5, INPUT);
   pinMode(D7, OUTPUT);
   pinMode(D1, OUTPUT);
@@ -51,7 +51,9 @@ void setup()
   pinMode(D6, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
 
+  digitalWrite(D8, LOW); // sensor power on
   digitalWrite(D6, HIGH);
+  delay(5000);
 
   blinkOK();
 
@@ -84,6 +86,25 @@ void setup()
   int httpCode = http.POST(jsonChar);
   http.end();
   Serial.println(String("code: ") + httpCode);
+
+  if (httpCode == 205)
+    RadonSensor::reset();
+
+  t_httpUpdate_return ret = ESPhttpUpdate.update("http://radon.4m1g0.com/update/firmware.bin");
+
+    switch (ret) {
+      case HTTP_UPDATE_FAILED:
+        Serial.printf("HTTP_UPDATE_FAILD Error (%d): %s", ESPhttpUpdate.getLastError(), ESPhttpUpdate.getLastErrorString().c_str());
+        break;
+
+      case HTTP_UPDATE_NO_UPDATES:
+        Serial.println("HTTP_UPDATE_NO_UPDATES");
+        break;
+
+      case HTTP_UPDATE_OK:
+        Serial.println("HTTP_UPDATE_OK");
+        break;
+  }
 
   ESP.deepSleep(60UL * 60 * SECONDS); // 1 hour
 }
