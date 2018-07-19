@@ -30,6 +30,7 @@
 <script>
 import RealtimeData from './RealtimeData'
 import RadonHistory from './RadonHistory'
+import DailyStats from './DailyStats'
 import Login from './Login'
 
 export default {
@@ -41,6 +42,7 @@ export default {
   components: {
     RealtimeData,
     RadonHistory,
+    DailyStats,
     Login
   },
   data() {

@@ -24,7 +24,7 @@
         </div>
         <div class="row">
           <div class="col l6 m12"><Card contentComponent="RadonHistory" :title="radonHistoryTitle"/></div>
-          <div class="col l6 m12"><!--<Card contentComponent="Schedules" :title="schedulesTitle"/>--></div>
+          <div class="col l6 m12"><Card contentComponent="DailyStats" :title="dailyStatsTitle"/></div>
         </div>
       </div>
     </div>
@@ -61,7 +61,7 @@ export default {
       radonHistoryTitle: '<i class="material-icons">multiline_chart</i> Radon History',
       powerHistoryTitle: '<i class="material-icons">history</i> Power History',
       moduleInfoTitle: '<i class="material-icons">info_outline</i> Module Info',
-      schedulesTitle: '<i class="material-icons">timer</i> Schedules',
+      dailyStatsTitle: '<i class="material-icons">timer</i> Daily stats',
       loginTitle: 'Login',
       loggedin: this.$cookie.get('token') != null,
     }
@@ -72,6 +72,9 @@ export default {
     M.Dropdown.init(elems, {});
   },
    created() {
+     if (this.$cookie.get('sensor') == null) {
+       this.$cookie.set('sensor', 3);
+     }
     // Using the service bus
     serverBus.$on('login', () => {
       location.reload();

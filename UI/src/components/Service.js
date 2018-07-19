@@ -18,9 +18,7 @@ export const Service = {
             start: 2018-06-09
             end: 2018-6-10
         */
-       var id2 = id;
-       if (id2 == 4) {id2 = 3; } // hack fail ids
-        var url = "http://radon.4m1g0.com:3000/radon/api/v1/history?sensorId=" + id2 + "&start=" + start + "&end=" + end;
+        var url = "http://radon.4m1g0.com:3000/radon/api/v1/history?sensorId=" + id + "&start=" + start + "&end=" + end;
         fetch(url)
             .then(response => response.json())
             .then((data) => {
@@ -32,17 +30,6 @@ export const Service = {
                 var values = {dates:[],values:[]};
                 var i = 0;
                 while (i < data.length){
-                    if (id == 3 && data[i]["value"] < 100 && data[i]["value"] > 0){
-                        // hack for the wrong sensor id
-                        i++;
-                        continue;
-                    }
-
-                    if (id == 4 && data[i]["value"] > 200 && data[i]["value"] < 8000){
-                        // hack for the wrong sensor id
-                        i++;
-                        continue;
-                    }
                     var diff = (new Date(data[i]["date"]) - lastDate) / 36e5;
                     if (diff > 1){ // is not the next value (there is a gap)
                         values["dates"].push(this.dateToString(lastDate));

@@ -44,6 +44,7 @@ export default {
         fetchHistory(){
             var id = this.$cookie.get('sensor');
             var end = new Date();
+            end.setDate(end.getDate() + 1);
             var start = new Date();
             start.setDate(start.getDate() - 15);
             Service.getRadonHistory(id, this.dateToString(start), this.dateToString(end), this.update);
