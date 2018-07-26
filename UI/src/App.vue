@@ -20,7 +20,7 @@
       <div class="container">
         <div class="row">
           <div class="col l6 m12"><Card contentComponent="RealtimeData" :title="realtimeDataTitle"/></div>
-          <div class="col l6 m12"><!--<Card contentComponent="ModuleInfo" :title="moduleInfoTitle"/>--></div>
+          <div class="col l6 m12"><Card contentComponent="Alerts" :title="alertsTitle"/></div>
         </div>
         <div class="row">
           <div class="col l6 m12"><Card contentComponent="RadonHistory" :title="radonHistoryTitle"/></div>
@@ -60,7 +60,7 @@ export default {
       realtimeDataTitle: '<i class="material-icons">info_outline</i> Real time data',
       radonHistoryTitle: '<i class="material-icons">multiline_chart</i> Radon History',
       powerHistoryTitle: '<i class="material-icons">history</i> Power History',
-      moduleInfoTitle: '<i class="material-icons">info_outline</i> Module Info',
+      alertsTitle: '<i class="material-icons">info_outline</i> Alerts',
       dailyStatsTitle: '<i class="material-icons">timer</i> Daily stats',
       loginTitle: 'Login',
       loggedin: this.$cookie.get('token') != null,

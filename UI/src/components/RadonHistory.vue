@@ -31,9 +31,9 @@ export default {
             });
         },
         update(data){
-            this.chartData.options.scales.yAxes[0].scaleLabel.labelString='Radon Level (Beq/m³)';
+            this.chartData.options.scales.yAxes[0].scaleLabel.labelString='Radon Level (Bq/m³)';
             this.chartData.options.scales.xAxes[0].scaleLabel.labelString='Time (hours)';
-            this.chartData.data.datasets[0].label = 'Radon Level (Beq/m³)'
+            this.chartData.data.datasets[0].label = 'Radon Level (Bq/m³)'
             this.chartData.data.datasets[0].data = data["values"];
             this.chartData.data.labels = data["dates"];
 

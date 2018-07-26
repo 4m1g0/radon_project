@@ -32,6 +32,7 @@ import RealtimeData from './RealtimeData'
 import RadonHistory from './RadonHistory'
 import DailyStats from './DailyStats'
 import Login from './Login'
+import Alerts from './Alerts'
 
 export default {
   name: 'card',
@@ -43,7 +44,8 @@ export default {
     RealtimeData,
     RadonHistory,
     DailyStats,
-    Login
+    Login,
+    Alerts
   },
   data() {
     return {
