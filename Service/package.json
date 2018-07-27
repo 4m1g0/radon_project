@@ -1,12 +1,13 @@
 {
   "dependencies": {
-    "mongodb": "3.0.1",
+    "atob": "^2.1.1",
+    "body-parser": "1.18.2",
+    "dateformat": "3.0.3",
     "express": "4.16.2",
     "http-status": "1.0.1",
+    "mongodb": "3.0.1",
     "mongoose": "5.0.1",
-    "wagner-core": "0.2.0",
-    "body-parser": "1.18.2",
     "underscore": "1.8.3",
-    "dateformat": "3.0.3"
+    "wagner-core": "0.2.0"
   }
 }

@@ -1,3 +1,4 @@
+global.atob = require("atob");
 var express = require('express');
 var status = require('http-status');
 var bodyparser = require('body-parser');
@@ -5,7 +6,9 @@ var bodyparser = require('body-parser');
 module.exports = function(wagner) {
     var api = express.Router();
 
-    api.use(bodyparser.json());
+    api.use(bodyparser.json({
+        extended: true
+    }));
 
     api.post('/history', wagner.invoke(function (RadonLog) {
         return function (req, res) {
@@ -93,12 +96,12 @@ module.exports = function(wagner) {
 
     api.delete('/alerts/:email', wagner.invoke(function (Alert) {
         return function(req, res){
-            Alert.remove({email: atob(req.params.id)}, function(error, alerts){
+            Alert.remove({email: atob(req.params.email)}, function(error, alerts){
                 if (error) {
                     return res.status(status.BAD_REQUEST).json({error: error.toString()});
                 }
 
-                if (!logs) {
+                if (!alerts) {
                     return res.status(status.NOT_FOUND).json({error:'Not found'});
                 }
 
@@ -107,21 +110,21 @@ module.exports = function(wagner) {
         };
     }));
 
-    api.post('/alerts/', wagner.invoke(function (Alert) {
+    api.post('/alerts', wagner.invoke(function (Alert) {
         return function (req, res) {
-            console.log(req.body);
+	        console.log(req.body);
             var alert = new Alert(req.body);
             alert.save(function (error, alert) {
                 if (error) {
                     return res.status(status.BAD_REQUEST).json({error: error.toString()});
                 }
 
-                return res.status(status.CREATED).json({alert: alert});
+                return res.status(status.CREATED).json(alert);
             });
         };
-    }));
-    
-    api.get('/alerts/', wagner.invoke(function (Alert) {
+    }));    
+
+    api.get('/alerts', wagner.invoke(function (Alert) {
         return function(req, res){
             Alert.find({}, function(error, alerts){
                 if (error) {
