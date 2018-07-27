@@ -10,10 +10,12 @@ module.exports = function(wagner) {
 
     var RadonLog = mongoose.model('RadonLog', require('./RadonLog'), 'radonLogs');
     var Sensor = mongoose.model('Sensor', require('./Sensor'), 'sensors');
+    var Alert = mongoose.model('Alert', require('./Alert'), 'alerts');
 
     var models = {
         RadonLog: RadonLog,
-        Sensor: Sensor
+        Sensor: Sensor,
+        Alert: Alert
     };
 
     // To ensure DRY-ness, register factories in a loop

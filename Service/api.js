@@ -91,5 +91,35 @@ module.exports = function(wagner) {
         };
     }));
 
+    api.delete('/alerts/:email', wagner.invoke(function (Alert) {
+        return function(req, res){
+            Alert.remove({email: atob(req.params.id)}, function(error, alerts){
+                if (error) {
+                    return res.status(status.BAD_REQUEST).json({error: error.toString()});
+                }
+
+                if (!logs) {
+                    return res.status(status.NOT_FOUND).json({error:'Not found'});
+                }
+
+                res.json({alerts:alerts});
+            });
+        };
+    }));
+
+    api.post('/alerts/', wagner.invoke(function (Alert) {
+        return function (req, res) {
+            console.log(req.body);
+            var alert = new Alert(req.body);
+            alert.save(function (error, alert) {
+                if (error) {
+                    return res.status(status.BAD_REQUEST).json({error: error.toString()});
+                }
+
+                return res.status(status.CREATED).json({alert: alert});
+            });
+        };
+    }));
+
   return api;
 };
