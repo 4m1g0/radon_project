@@ -23,9 +23,9 @@ export default {
         createChart(chartId, chartData) {
             const ctx = document.getElementById(chartId);
             new Chart(ctx, {
-            type: chartData.type,
-            data: chartData.data,
-            options: chartData.options,
+                type: chartData.type,
+                data: chartData.data,
+                options: chartData.options,
             });
         },
         update(data){

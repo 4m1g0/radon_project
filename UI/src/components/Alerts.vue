@@ -10,6 +10,7 @@
         <div class="input-field col s6">
             <input id="email" type="email" v-model="newAlert.email">
             <label for="email">Email</label>
+            <div v-show="error != ''" class="red-text">{{error}}</div>
         </div>
         <div class="input-field col s6">
             <input id="level" type="text" value="300" v-model="newAlert.level">
@@ -21,32 +22,43 @@
 </template>
 
 <script>
+import Service from './Service'
+
 export default {
     name: 'Alerts',
     data(){
         return {
-            alerts: [{email:'o.blanco@udc.es',level:300}],
+            alerts: [{}],
             newAlert: {email: '', level:300},
             error: "",
         };
     },
     methods:{
         del(index){
+            Service.delAlert(this.alerts[index].email);
             this.alerts.pop(index);
         },
         add(){
-            if (this.validEmail(this.newAlert.email))
+            if (true){//this.validEmail(this.newAlert.email)){
                 this.alerts.push(this.newAlert);
+                Service.addAlert(this.newAlert);
+                this.error = "";
+                this.newAlert =  {email: '', level:300};
+            }
             else
                 this.error = "The email is not valid";
         },
          validEmail: function (email) {
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email);
+        },
+        update(alerts){
+            this.alerts = alerts;
+            this.$emit('set_loading', false);
         }
     },
     mounted() {
-        this.$emit('set_loading', false);
+        Service.getAlerts(this.update);
     }
 }
 </script>

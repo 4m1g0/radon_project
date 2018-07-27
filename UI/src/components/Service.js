@@ -56,101 +56,39 @@ export const Service = {
                 callback(values);
             });
     },
-    getPriceHistory: function(callback) {
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();
-        if(dd<10){ dd='0'+dd;} 
-        if(mm<10){mm='0'+mm;} 
-        var date = dd + '-' + mm + '-' + yyyy;
-        
-        fetch("http://tfm.4m1g0.com:1880/prices/?date=" + date)
-            .then(response => response.json())
-            .then((data) => {
-                // eslint-disable-next-line
-                console.log(data.slice(4,28));
-                data.forEach((element, i, data) => {
-                    data[i] = element / 1000000;
-                });
-                
-                callback(data);
-            });
+    addAlert(alert){
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
+
+
+        var config = {
+            method: 'POST',
+            body: JSON.stringify(alert),
+            headers: headers
+        };
+
+        fetch("http://radon.4m1g0.com:3000/radon/api/v1/alerts/", config)
+          // eslint-disable-next-line
+          .then(res => console.log(res));
     },
-    getPowerHistory(callback){
-        fetch("http://tfm.4m1g0.com:1880/powerHistory")
-                .then(response => response.json())
-                .then((data) => {
-                    // eslint-disable-next-line
-                    console.log(data);
-                    data.forEach((element, i, data) => {
-                        data[i] = element; // in case we need to transform the values
-                    });
-                    callback(data);
-                });
+    delAlert(email){
+        var config = {
+            method: 'DELETE',
+        };
+
+        fetch("http://radon.4m1g0.com:3000/radon/api/v1/alerts/" + btoa(email), config)
+          // eslint-disable-next-line
+          .then(res => console.log(res));
     },
-    getStatus(callback){
-        fetch("http://tfm.4m1g0.com:1880/status")
+    getAlerts(callback){
+        fetch("http://radon.4m1g0.com:3000/radon/api/v1/alerts/")
             .then(response => response.json())
             .then((data) => {
                 // eslint-disable-next-line
                 console.log(data);
-                callback(data);
+                callback(data["alerts"]);
             });
     },
-    getTimers(callback){
-        fetch("http://tfm.4m1g0.com:1880/timers")
-            .then(response => response.json())
-            .then((data) => {
-            for(var i=0; i<data.length; i++){
-                var arrayNumbers = data[i].Days.split("");
-                var arrayBool = []
-                for (var j=0;j<arrayNumbers.length;j++){
-                if (arrayNumbers[j] == '1'){
-                    arrayBool.push(true);
-                } else {
-                    arrayBool.push(false);
-                }
-                }
-                data[i].Days = arrayBool;
-            }
-            // eslint-disable-next-line
-            console.log(JSON.stringify(data));
-
-            callback(data);
-            
-        });
-    },
-    setStatus(state){
-        var config = {
-            method: 'PUT',
-            body: ''
-          };
-
-        if (state)
-            config.body = '{"power":"OFF"}';
-        else
-            config.body = '{"power":"ON"}';
-
-        fetch("http://tfm.4m1g0.com:1880/status", config)
-            // eslint-disable-next-line
-            .then(res => console.log(res));
-    },
-    saveTimer(timer, i){
-        var config = {
-            method: 'PUT',
-            body: ''
-          };
-
-        config.body = JSON.stringify(timer);
-        // eslint-disable-next-line
-        console.log(config.body);
-
-        var id = parseInt(i)+ 1;
-        fetch("http://tfm.4m1g0.com:1880/timer/" + id, config)
-          // eslint-disable-next-line
-          .then(res => console.log(res));
-    }
   }
 
   export default Service;
