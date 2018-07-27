@@ -121,5 +121,21 @@ module.exports = function(wagner) {
         };
     }));
 
+    api.get('/alerts/', wagner.invoke(function (Alert) {
+        return function(req, res){
+            Alert.find({}, function(error, alerts){
+                if (error) {
+                    return res.status(status.BAD_REQUEST).json({error: error.toString()});
+                }
+
+                if (!alerts) {
+                    return res.status(status.NOT_FOUND).json({error:'Not found'});
+                }
+
+                res.json({alerts:alerts});
+            });
+        };
+    }));
+
   return api;
 };
