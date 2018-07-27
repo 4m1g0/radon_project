@@ -40,26 +40,35 @@ const int8_t POWER = D8;
 void select(int n)
 {
   digitalWrite(D7, n & 0b0001);
-  digitalWrite(D1, n & 0b0010);
-  digitalWrite(D2, n & 0b0100);
+  digitalWrite(D5, n & 0b0010);
+  digitalWrite(D4, n & 0b0100);
   digitalWrite(D3, n & 0b1000);
+}
+
+int read(){
+  int analog = analogRead(A0);
+
+  if (analog > 255)
+    return 1;
+  
+  return 0;
 }
 
 void printSegments() {
   select(SEG_A);
-  int A = digitalRead(D5);
+  int A = read();
   select(SEG_B);
-  int B = digitalRead(D5);
+  int B = read();
   select(SEG_C);
-  int C = digitalRead(D5);
+  int C = read();
   select(SEG_D);
-  int D = digitalRead(D5);
+  int D = read();
   select(SEG_E);
-  int E = digitalRead(D5);
+  int E = read();
   select(SEG_F);
-  int F = digitalRead(D5);
+  int F = read();
   select(SEG_G);
-  int G = digitalRead(D5);
+  int G = read();
 
   Serial.print(A);
   Serial.print(B);
@@ -72,31 +81,33 @@ void printSegments() {
 }
 
 bool getLongTerm(){
-  select(LCD_4);
-  while (digitalRead(D5) != LOW) {  }
+  select(LCD_4); 
+  while (read() != LOW) {  }
   
   select(LCD_L4);
-  return !digitalRead(D5);
+  return !read();
 }
 
 int getSegment(int n){
   select(n);
-  while (digitalRead(D5) != LOW) {  }
+  while (read() != LOW) {  }
+
+  //printSegments();
 
   select(SEG_A);
-  int A = !digitalRead(D5);
+  int A = !read();
   select(SEG_B);
-  int B = !digitalRead(D5);
+  int B = !read();
   select(SEG_C);
-  int C = !digitalRead(D5);
+  int C = !read();
   select(SEG_D);
-  int D = !digitalRead(D5);
+  int D = !read();
   select(SEG_E);
-  int E = !digitalRead(D5);
+  int E = !read();
   select(SEG_F);
-  int F = !digitalRead(D5);
+  int F = !read();
   select(SEG_G);
-  int G = !digitalRead(D5);
+  int G = !read();
 
   int mask = (A<<6) | (B<<5) | (C<<4) | (D<<3) | (E<<2) | (F<<1) | G;
 
@@ -131,6 +142,7 @@ int getSegment(int n){
 int _getValue(){
   if (getLongTerm())
   {
+    Serial.println("changing to long term");
     digitalWrite(D6, LOW);
     delay(300);
     digitalWrite(D6, HIGH);
@@ -153,7 +165,7 @@ int _getValue(){
 SensorValue* RadonSensor::getValue() {
   int value = _getValue();
   Serial.printf("Reading sensor... %d\n", value);
-  return new SensorValue(3, value);
+  return new SensorValue(4, value);
 }
 
 void RadonSensor::reset(){

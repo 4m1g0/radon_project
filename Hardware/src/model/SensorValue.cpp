@@ -23,7 +23,7 @@
 SensorValue::SensorValue(int sensorId, int value)
 {
   // Current date
-  _date = Clock::getHumanDateTime(Clock::getUnixTime());
+  //_date = Clock::getHumanDateTime(Clock::getUnixTime());
   _sensorId = sensorId;
   _value = value;
 }
@@ -31,7 +31,7 @@ SensorValue::SensorValue(int sensorId, int value)
 void SensorValue::toJson(ArduinoJson::JsonObject &json)
 {
   json.set<int>("sensorId", _sensorId);
-  json.set<String>("date", _date);
+  json.set<String>("date", "");
   json.set<int>("value", _value);
 }
 

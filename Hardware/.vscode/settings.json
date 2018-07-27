@@ -2,5 +2,13 @@
     "terminal.integrated.env.linux": {
         "PATH": "/home/oscar/.platformio/penv/bin:/home/oscar/.platformio/penv:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.fc27.x86_64//bin:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.fc27.x86_64//bin:/usr/lib64/qt-3.3/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/oscar/.local/bin:/home/oscar/bin:/home/oscar/.local/bin:/home/oscar/bin",
         "PLATFORMIO_CALLER": "vscode"
+    },
+    "files.associations": {
+        "array": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "initializer_list": "cpp"
     }
 }
