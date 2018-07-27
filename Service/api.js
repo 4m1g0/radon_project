@@ -120,10 +120,10 @@ module.exports = function(wagner) {
             });
         };
     }));
-
-    api.get('/alerts/', wagner.invoke(function (Alerts) {
+    
+    api.get('/alerts/', wagner.invoke(function (Alert) {
         return function(req, res){
-            Alerts.find({}, function(error, alerts){
+            Alert.find({}, function(error, alerts){
                 if (error) {
                     return res.status(status.BAD_REQUEST).json({error: error.toString()});
                 }
