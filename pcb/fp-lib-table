@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name radon)(type KiCad)(uri "$(KIPRJMOD)/radon.pretty")(options "")(descr ""))
+)

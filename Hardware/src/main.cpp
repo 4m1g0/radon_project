@@ -80,12 +80,12 @@ void setup()
         ESP.deepSleep(10 * 60 * SECONDS);
       }
 
-      Serial.println(Clock::getHumanTime(Clock::getUnixTime()));
+      Serial.println(Clock::getHumanDateTime(Clock::getUnixTime()));;
 
       Ds1307::DateTime dt = {
-          .year = 18,
-          .month = Ds1307::MONTH_JUL,
-          .day = 11,
+          .year = atoi(Clock::getHumanDateTime(Clock::getUnixTime()).substring(2, 4).c_str()),
+          .month = atoi(Clock::getHumanDateTime(Clock::getUnixTime()).substring(5, 7).c_str()),
+          .day = atoi(Clock::getHumanDateTime(Clock::getUnixTime()).substring(8, 10).c_str()),
           .hour = atoi(Clock::getHumanTime(Clock::getUnixTime()).substring(0, 2).c_str()) +1 ,
           .minute = atoi(Clock::getHumanTime(Clock::getUnixTime()).substring(3, 5).c_str()),
           .second = atoi(Clock::getHumanTime(Clock::getUnixTime()).substring(6, 8).c_str()),
@@ -95,9 +95,6 @@ void setup()
       rtc.setDateTime(&dt);
       Serial.println("RTC Updated.");
   }
-
-
-
 
 
   DynamicJsonBuffer jsonBuffer;

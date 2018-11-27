@@ -165,7 +165,7 @@ int _getValue(){
 SensorValue* RadonSensor::getValue() {
   int value = _getValue();
   Serial.printf("Reading sensor... %d\n", value);
-  return new SensorValue(4, value);
+  return new SensorValue(3, value);
 }
 
 void RadonSensor::reset(){
