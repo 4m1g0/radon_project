@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name pcbRadon-rescue)(type Legacy)(uri ${KIPRJMOD}/pcbRadon-rescue.lib)(options "")(descr ""))
+  (lib (name radon)(type Legacy)(uri ${KIPRJMOD}/radon.lib)(options "")(descr ""))
+)

@@ -1,6 +1,39 @@
-EESchema Schematic File Version 4
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:radon
 LIBS:pcbRadon-cache
-EELAYER 28 0
+EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -15,7 +48,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L radon:Wemos U1
+L Wemos U1
 U 1 1 5B464B1A
 P 5500 2650
 F 0 "U1" H 5000 2650 60  0000 C CNN
@@ -26,7 +59,7 @@ F 3 "" H 5550 2750 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L pcbRadon-rescue:SANYOU_SRD_Form_C K1
+L SANYOU_SRD_Form_C K1
 U 1 1 5B464BC5
 P 4350 1550
 F 0 "K1" H 4800 1700 50  0000 L CNN
@@ -37,7 +70,7 @@ F 3 "" H 4350 1550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L pcbRadon-rescue:Jack-DC J2
+L Jack-DC J2
 U 1 1 5B464C9B
 P 5000 850
 F 0 "J2" H 5000 1060 50  0000 C CNN
@@ -48,7 +81,7 @@ F 3 "" H 5050 810 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L pcbRadon-rescue:TIP120 Q1
+L TIP120 Q1
 U 1 1 5B464D4E
 P 4250 2550
 F 0 "Q1" H 4500 2625 50  0000 L CNN
@@ -59,7 +92,7 @@ F 3 "" H 4250 2550 50  0001 L CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L pcbRadon-rescue:R R2
+L R R2
 U 1 1 5B464E5B
 P 6550 2350
 F 0 "R2" V 6630 2350 50  0000 C CNN
@@ -70,7 +103,7 @@ F 3 "" H 6550 2350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L pcbRadon-rescue:R R1
+L R R1
 U 1 1 5B464E82
 P 4450 2300
 F 0 "R1" V 4530 2300 50  0000 C CNN
@@ -81,7 +114,7 @@ F 3 "" H 4450 2300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L pcbRadon-rescue:R R3
+L R R3
 U 1 1 5B464EE1
 P 6800 2350
 F 0 "R3" V 6880 2350 50  0000 C CNN
@@ -92,18 +125,18 @@ F 3 "" H 6800 2350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L pcbRadon-rescue:Conn_01x02 J1
+L Conn_01x02 J1
 U 1 1 5B464F54
-P 4650 750
-F 0 "J1" H 4650 850 50  0000 C CNN
-F 1 "Conn_01x02" H 4650 550 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 4650 750 50  0001 C CNN
-F 3 "" H 4650 750 50  0001 C CNN
-	1    4650 750 
-	0    1    -1   0   
+P 4450 750
+F 0 "J1" H 4450 850 50  0000 C CNN
+F 1 "Conn_01x02" H 4450 550 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 4450 750 50  0001 C CNN
+F 3 "" H 4450 750 50  0001 C CNN
+	1    4450 750 
+	0    -1   -1   0   
 $EndComp
 $Comp
-L pcbRadon-rescue:Conn_01x06 J3
+L Conn_01x06 J3
 U 1 1 5B4650C7
 P 5400 3850
 F 0 "J3" H 5400 4150 50  0000 C CNN
@@ -114,7 +147,7 @@ F 3 "" H 5400 3850 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L pcbRadon-rescue:Jumper JP1
+L Jumper JP1
 U 1 1 5B465188
 P 4850 2500
 F 0 "JP1" H 4850 2650 50  0000 C CNN
@@ -125,7 +158,7 @@ F 3 "" H 4850 2500 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L pcbRadon-rescue:Jumper JP2
+L Jumper JP2
 U 1 1 5B46520F
 P 6200 2700
 F 0 "JP2" H 6200 2850 50  0000 C CNN
@@ -136,7 +169,7 @@ F 3 "" H 6200 2700 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L pcbRadon-rescue:Conn_01x04 J4
+L Conn_01x04 J4
 U 1 1 5B465274
 P 7900 2550
 F 0 "J4" H 7900 2750 50  0000 C CNN
@@ -147,7 +180,7 @@ F 3 "" H 7900 2550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR01
+L GND #PWR01
 U 1 1 5B465ADC
 P 7450 2300
 F 0 "#PWR01" H 7450 2050 50  0001 C CNN
@@ -158,7 +191,7 @@ F 3 "" H 7450 2300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR02
+L GND #PWR02
 U 1 1 5B465B0A
 P 5750 3400
 F 0 "#PWR02" H 5750 3150 50  0001 C CNN
@@ -169,7 +202,7 @@ F 3 "" H 5750 3400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:VCC #PWR03
+L VCC #PWR03
 U 1 1 5B466297
 P 4150 1100
 F 0 "#PWR03" H 4150 950 50  0001 C CNN
@@ -180,7 +213,7 @@ F 3 "" H 4150 1100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR04
+L GND #PWR04
 U 1 1 5B466387
 P 4150 2950
 F 0 "#PWR04" H 4150 2700 50  0001 C CNN
@@ -191,7 +224,7 @@ F 3 "" H 4150 2950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:VDD #PWR05
+L VDD #PWR05
 U 1 1 5B466908
 P 5000 1850
 F 0 "#PWR05" H 5000 1700 50  0001 C CNN
@@ -202,7 +235,7 @@ F 3 "" H 5000 1850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR06
+L GND #PWR06
 U 1 1 5B4669E4
 P 5550 1000
 F 0 "#PWR06" H 5550 750 50  0001 C CNN
@@ -213,7 +246,7 @@ F 3 "" H 5550 1000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR07
+L GND #PWR07
 U 1 1 5B466BF7
 P 4550 1050
 F 0 "#PWR07" H 4550 800 50  0001 C CNN
@@ -224,7 +257,7 @@ F 3 "" H 4550 1050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:VCC #PWR08
+L VCC #PWR08
 U 1 1 5B466FE1
 P 7600 2550
 F 0 "#PWR08" H 7600 2400 50  0001 C CNN
@@ -235,7 +268,7 @@ F 3 "" H 7600 2550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:VCC #PWR09
+L VCC #PWR09
 U 1 1 5B4671E5
 P 6200 2300
 F 0 "#PWR09" H 6200 2150 50  0001 C CNN
@@ -246,7 +279,7 @@ F 3 "" H 6200 2300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR010
+L GND #PWR010
 U 1 1 5B467617
 P 6800 2600
 F 0 "#PWR010" H 6800 2350 50  0001 C CNN
@@ -266,6 +299,8 @@ Wire Wire Line
 	5750 2050 5750 2250
 Wire Wire Line
 	5300 950  5550 950 
+Wire Wire Line
+	4450 1250 4450 950 
 Wire Wire Line
 	4550 950  4550 1050
 Wire Wire Line
@@ -351,7 +386,7 @@ Wire Wire Line
 Wire Wire Line
 	6800 2500 6800 2600
 Wire Wire Line
-	6550 2200 6650 2200
+	6550 2200 6800 2200
 Wire Wire Line
 	5550 2250 5550 2100
 Wire Wire Line
@@ -381,8 +416,9 @@ NoConn ~ 5250 3050
 NoConn ~ 5150 3050
 NoConn ~ 5850 2250
 NoConn ~ 5300 850 
+NoConn ~ 4650 1250
 $Comp
-L power:VDD #PWR011
+L VDD #PWR011
 U 1 1 5BC9B9BD
 P 5400 650
 F 0 "#PWR011" H 5400 500 50  0001 C CNN
@@ -397,7 +433,7 @@ Wire Wire Line
 Wire Wire Line
 	5400 750  5400 650 
 $Comp
-L power:PWR_FLAG #FLG012
+L PWR_FLAG #FLG012
 U 1 1 5BC9BC1F
 P 7250 700
 F 0 "#FLG012" H 7250 775 50  0001 C CNN
@@ -408,7 +444,7 @@ F 3 "" H 7250 700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:VDD #PWR013
+L VDD #PWR013
 U 1 1 5BC9BC4D
 P 7250 800
 F 0 "#PWR013" H 7250 650 50  0001 C CNN
@@ -421,7 +457,7 @@ $EndComp
 Wire Wire Line
 	7250 700  7250 800 
 $Comp
-L power:GND #PWR014
+L GND #PWR014
 U 1 1 5BC9BCDC
 P 7750 850
 F 0 "#PWR014" H 7750 600 50  0001 C CNN
@@ -432,7 +468,7 @@ F 3 "" H 7750 850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:PWR_FLAG #FLG015
+L PWR_FLAG #FLG015
 U 1 1 5BC9BD0A
 P 7750 700
 F 0 "#FLG015" H 7750 775 50  0001 C CNN
@@ -445,7 +481,7 @@ $EndComp
 Wire Wire Line
 	7750 700  7750 850 
 $Comp
-L radon:Step-down U2
+L Step-down U2
 U 1 1 5BC9C39E
 P 6850 1550
 F 0 "U2" H 6850 1800 60  0000 C CNN
@@ -457,7 +493,7 @@ F 3 "" H 6700 1500 60  0001 C CNN
 $EndComp
 NoConn ~ 6350 1700
 $Comp
-L power:VDD #PWR016
+L VDD #PWR016
 U 1 1 5BC9C842
 P 7500 1400
 F 0 "#PWR016" H 7500 1250 50  0001 C CNN
@@ -468,7 +504,7 @@ F 3 "" H 7500 1400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR017
+L GND #PWR017
 U 1 1 5BC9C8C2
 P 7500 1700
 F 0 "#PWR017" H 7500 1450 50  0001 C CNN
@@ -483,7 +519,7 @@ Wire Wire Line
 Wire Wire Line
 	7350 1400 7500 1400
 $Comp
-L power:VCC #PWR018
+L VCC #PWR018
 U 1 1 5BC9C9D4
 P 6250 1350
 F 0 "#PWR018" H 6250 1200 50  0001 C CNN
@@ -497,9 +533,4 @@ Wire Wire Line
 	6250 1350 6250 1400
 Wire Wire Line
 	6250 1400 6350 1400
-Wire Wire Line
-	6650 2200 6800 2200
-NoConn ~ 4450 1250
-Wire Wire Line
-	4650 950  4650 1250
 $EndSCHEMATC
