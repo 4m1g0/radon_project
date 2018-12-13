@@ -15,7 +15,7 @@ module.exports = function(wagner) {
 	    console.log(req.body);
             var log = new RadonLog(req.body);
             log.save(function (error, log) {
-                if (error) {
+                if (error) { 
                     return res.status(status.BAD_REQUEST).json({error: error.toString()});
                 }
                 
@@ -137,6 +137,29 @@ module.exports = function(wagner) {
 
                 res.json({alerts:alerts});
             });
+        };
+    }));
+
+    function getDateTime() {
+        var date = new Date();
+        var hour = date.getHours();
+        hour = (hour < 10 ? "0" : "") + hour;
+        var min  = date.getMinutes();
+        min = (min < 10 ? "0" : "") + min;
+        var sec  = date.getSeconds();
+        sec = (sec < 10 ? "0" : "") + sec;
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        month = (month < 10 ? "0" : "") + month;
+        var day  = date.getDate();
+        day = (day < 10 ? "0" : "") + day;
+        
+        return year + "-" + month + "-" + day + " " + hour + ":" + min + ":" + sec;
+    }
+
+    api.get('/time', wagner.invoke(function () {
+        return function(req, res){
+            res.send(getDateTime());
         };
     }));
 
