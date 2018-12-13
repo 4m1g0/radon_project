@@ -18,7 +18,6 @@
 #include "Clock.h"
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
-#include "config.h"
 #include <time.h>
 
 
