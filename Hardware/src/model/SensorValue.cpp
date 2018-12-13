@@ -20,7 +20,7 @@
 #include "SensorValue.h"
 #include "../Clock/Clock.h"
 
-SensorValue::SensorValue(int sensorId, int value)
+SensorValue::SensorValue(uint32_t sensorId, int value)
 {
   // Current date
   //_date = Clock::getHumanDateTime(Clock::getUnixTime());
@@ -30,7 +30,7 @@ SensorValue::SensorValue(int sensorId, int value)
 
 void SensorValue::toJson(ArduinoJson::JsonObject &json)
 {
-  json.set<int>("sensorId", _sensorId);
+  json.set<uint32_t>("sensorId", _sensorId);
   json.set<String>("date", "");
   json.set<int>("value", _value);
 }

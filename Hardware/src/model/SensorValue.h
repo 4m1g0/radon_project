@@ -26,7 +26,7 @@
 class SensorValue : public Serializable<JsonObject&>
 {
 public:
-  SensorValue(int sensorId, int value);
+  SensorValue(uint32_t sensorId, int value);
   void fromJson(JsonObject& json);
   void toJson(JsonObject& json);
 

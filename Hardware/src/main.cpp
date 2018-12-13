@@ -112,7 +112,7 @@ void setup()
   rtc.getDateTime(&now);
 
   json.set<String>("date", String(now.year + 2000) + "-" + now.month + "-" + now.day + " " + now.hour + ":" + now.minute + ":" + now.second);
-  char jsonChar[60];
+  char jsonChar[66];
   json.printTo((char*)jsonChar, json.measureLength() + 1);
   
   File f = SPIFFS.open("data.txt", "a+");
@@ -149,7 +149,9 @@ void setup()
     if (httpCode == 205)
       RadonSensor::reset();
 
-    t_httpUpdate_return ret = ESPhttpUpdate.update("http://radon.4m1g0.com/update/firmware.bin");
+    String url = "http://radon.4m1g0.com/update/";
+    url += String(ESP.getChipId()) + String(".bin");
+    t_httpUpdate_return ret = ESPhttpUpdate.update(url);
 
     switch (ret) {
       case HTTP_UPDATE_FAILED:
